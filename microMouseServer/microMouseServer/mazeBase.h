@@ -26,6 +26,7 @@ public:
     void setXY(int valX,int valY);
     void setWall(Wall pos, baseMapNode *addr);
     void clearWall(Wall pos);
+    bool isVisited;
 };
 
 #endif

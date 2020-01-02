@@ -52,6 +52,10 @@ private:
     void turnLeft();
     void turnRight();
     void foundFinish();
+    bool isLeftVisited();
+    bool isRightVisited();
+    int findxPos();
+    int findyPos();
     void printUI(const char *mesg);
 
     QTimer *_comTimer;
