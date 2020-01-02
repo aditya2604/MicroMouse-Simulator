@@ -378,6 +378,7 @@ bool microMouseServer::isWallForward()
 
     return true;
 }
+
 bool microMouseServer::isWallLeft()
 {
     baseMapNode *mover = &this->mazeData[this->maze->mouseX()-1][this->maze->mouseY()-1];
@@ -397,28 +398,7 @@ bool microMouseServer::isWallLeft()
     }
     return true;
 }
-bool microMouseServer::isLeftVisited()
-{
-    baseMapNode *mover = NULL;
-    switch (this->maze->mouseDir()) {
-    case dUP:
-        mover = &this->mazeData[this->maze->mouseX()-2][this->maze->mouseY()-1];
-        return mover->isVisited;
-        break;
-    case dDOWN:
-        mover = &this->mazeData[this->maze->mouseX()][this->maze->mouseY()-1];
-        return mover->isVisited;
-        break;
-    case dLEFT:
-        mover = &this->mazeData[this->maze->mouseX()-1][this->maze->mouseY()-2];
-        return mover->isVisited;
-        break;
-    case dRIGHT:
-        mover = &this->mazeData[this->maze->mouseX()-1][this->maze->mouseY()];
-        return mover->isVisited;
-        break;
-    }
-}
+
 bool microMouseServer::isWallRight()
 {
     baseMapNode *mover = &this->mazeData[this->maze->mouseX()-1][this->maze->mouseY()-1];
@@ -438,30 +418,7 @@ bool microMouseServer::isWallRight()
     }
     return true;
 }
-bool microMouseServer::isRightVisited()
-{
-    baseMapNode *mover = NULL;
-    switch (this->maze->mouseDir()) {
-    case dUP:
-        mover = &this->mazeData[this->maze->mouseX()][this->maze->mouseY()-1];
-        return mover->isVisited;
-        break;
-    case dDOWN:
-        mover = &this->mazeData[this->maze->mouseX()-2][this->maze->mouseY()-1];
-        return mover->isVisited;
-        break;
-    case dLEFT:
-        mover = &this->mazeData[this->maze->mouseX()-1][this->maze->mouseY()];
-        return mover->isVisited;
-        break;
-    case dRIGHT:
-        mover = &this->mazeData[this->maze->mouseX()-1][this->maze->mouseY()-2];
-        return mover->isVisited;
-        return mover->isWallBottom();
-        break;
-    }
-    return true;
-}
+
 bool microMouseServer::moveForward()
 {
     bool hasMoved = false;
@@ -503,9 +460,6 @@ bool microMouseServer::moveForward()
         }
         break;
     }
-
-    if(hasMoved == true)
-        this->mazeData[newPos.x()][newPos.y()].isVisited = true;
 
     return hasMoved;
 }
