@@ -52,8 +52,8 @@ private:
     void turnLeft();
     void turnRight();
     void foundFinish();
-    int findxPos();
-    int findyPos();
+    int findxPos(); // Function to find the X coordinate of the mouse
+    int findyPos(); // Function to find the Y coordinate of the mouse
     void printUI(const char *mesg);
 
     QTimer *_comTimer;

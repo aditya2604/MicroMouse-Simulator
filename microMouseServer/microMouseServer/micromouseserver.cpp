@@ -505,10 +505,12 @@ void microMouseServer::turnRight()
     }
 }
 
+//Returns X coordinate of mouse(mouseX)
 int microMouseServer::findxPos()
 {
     return this->maze->mouseX();
 }
+//Returns Y coordinate of mouse(mouseY)
 int microMouseServer::findyPos()
 {
     return this->maze->mouseY();
