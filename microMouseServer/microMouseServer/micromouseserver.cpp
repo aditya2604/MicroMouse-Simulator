@@ -5,8 +5,11 @@
 #include <QFileDialog>
 #include <QFile>
 #include <QTextStream>
+#include <iostream>
 
+using namespace std;
 
+//extern int isVisited[MAZE_WIDTH+1][MAZE_HEIGHT+1];
 microMouseServer::microMouseServer(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::microMouseServer)
@@ -23,6 +26,7 @@ microMouseServer::microMouseServer(QWidget *parent) :
     ui->graphics->setScene(maze);
 
     this->initMaze();
+    this->initDatabase();
     this->maze->drawGuideLines();
     this->maze->drawMaze(this->mazeData);
 
@@ -484,6 +488,7 @@ void microMouseServer::turnLeft()
     }
 
 }
+
 void microMouseServer::turnRight()
 {
     QPoint newPos;
@@ -504,15 +509,3 @@ void microMouseServer::turnRight()
         break;
     }
 }
-
-//Returns X coordinate of mouse(mouseX)
-int microMouseServer::findxPos()
-{
-    return this->maze->mouseX();
-}
-//Returns Y coordinate of mouse(mouseY)
-int microMouseServer::findyPos()
-{
-    return this->maze->mouseY();
-}
-

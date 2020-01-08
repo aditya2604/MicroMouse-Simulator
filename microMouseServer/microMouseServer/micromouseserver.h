@@ -1,4 +1,4 @@
-#ifndef MICROMOUSESERVER_H
+﻿#ifndef MICROMOUSESERVER_H
 #define MICROMOUSESERVER_H
 #include "mazeConst.h"
 #include "mazeBase.h"
@@ -12,7 +12,12 @@
 #include <QLineF>
 #include <QTimer>
 
-
+enum Direction
+{
+    L = 0,
+    R,
+    F
+};
 
 namespace Ui {
 class microMouseServer;
@@ -54,6 +59,12 @@ private:
     void foundFinish();
     int findxPos(); // Function to find the X coordinate of the mouse
     int findyPos(); // Function to find the Y coordinate of the mouse
+    void updateDatabase(int,int,Direction);
+    bool checkDatabaseForDecision(int,int,Direction);
+    bool closingCondition(int);
+    bool isWallLeftEnhanced();
+    bool isWallRightEnhanced();
+    bool isWallForwardEnhanced();
     void printUI(const char *mesg);
 
     QTimer *_comTimer;
@@ -63,8 +74,15 @@ private:
     mazeGui *maze;
     std::vector<QGraphicsLineItem*> backgroundGrid;
     struct baseMapNode mazeData[MAZE_WIDTH][MAZE_HEIGHT];
+    int dataBase[MAZE_WIDTH+1][MAZE_HEIGHT+1];
+    int isVisited[MAZE_WIDTH+1][MAZE_HEIGHT+1];
+    void initDatabase();
     void connectSignals();
     void initMaze();
 };
+
+
+
+#define MAX_DB_ENTRIES 100
 
 #endif // MICROMOUSESERVER_H
